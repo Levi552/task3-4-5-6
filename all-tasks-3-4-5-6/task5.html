@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Dropdown</title>
+  <style>
+    :root {
+      --dropdown-border-color: #ccc;
+    }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid var(--dropdown-border-color);
+      border-radius: 4px;
+      background-color: #fff;
+      cursor: pointer;
+      box-sizing: border-box;
+    }
+    .options {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      z-index: 1000;
+      display: none;
+      width: 100%;
+      max-height: 200px;
+      overflow-y: auto;
+      border: 1px solid var(--dropdown-border-color);
+      border-top: none;
+      border-radius: 0 0 4px 4px;
+      background-color: #fff;
+      box-sizing: border-box;
+    }
+    .option {
+      padding: 8px;
+      cursor: pointer;
+    }
+    .option:hover {
+      background-color: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <div class="dropdown">
+    <div class="dropdown-select">Select an option</div>
+    <div class="options">
+      <div class="option">Option 1</div>
+      <div class="option">Option 2</div>
+      <div class="option">Option 3</div>
+      <div class="option">Option 4</div>
+      <div class="option">Option 5</div>
+      <div class="option">Option 6</div>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.dropdown').forEach(dropdown => {
+      const select = dropdown.querySelector('.dropdown-select');
+      const options = dropdown.querySelector('.options');
+
+      select.addEventListener('click', () => {
+        options.style.display = options.style.display === 'block' ? 'none' : 'block';
+      });
+
+      options.addEventListener('click', (event) => {
+        const selectedOption = event.target.closest('.option');
+        if (selectedOption) {
+          select.textContent = selectedOption.textContent;
+          options.style.display = 'none';
+        }
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!dropdown.contains(event.target)) {
+          options.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

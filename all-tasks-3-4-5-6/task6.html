@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Tabs</title>
+  <link rel="stylesheet" href="style2.css">
+  <style>
+    .tab {
+      padding: 8px 16px;
+      cursor: pointer;
+      border: none;
+      background-color: transparent;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      font-weight: 700;
+    }
+    .tab.active {
+      border-bottom: 2px solid blue;
+    }
+    .content {
+      display: none;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      font-weight: 400;
+    }
+    .content.active {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .tab-img{
+        width: 400px;
+        height: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div class="tabs">
+    <button class="tab active" data-tab="tab1">Tab 1</button>
+    <button class="tab" data-tab="tab2">Tab 2</button>
+    <button class="tab" data-tab="tab3">Tab 3</button>
+  </div>
+  <div class="content active" id="tab1">Content for Tab 1</div>
+  <div class="content" id="tab2">Content for Tab 2</div>
+  <div class="content" id="tab3">Content for Tab 3</div>
+
+  <custom-tabs>
+    <div key="1" class="content active" id="tab1">
+      <div class="container_content">
+        <h2 class="first_tab_title">Добро пожаловать в первую вкладку!</h2>
+        <p class="text">Здесь вы можете найти различные интересные материалы</p>
+        <img class="tab-img" src="https://s0.rbk.ru/v6_top_pics/media/img/7/96/755673492665967.jpg" alt="Красивая картинка">
+      </div>
+    </div>
+    <div key="2" class="content" id="tab2">
+        <div key="2" class="content" id="tab2">
+            <h2>Интересные факты о морских обитателях</h2>
+            <p>Морские обитатели - это удивительные создания, и в этой вкладке мы расскажем вам несколько интересных фактов о них:</p>
+            <ul>
+              <li>Некоторые крабы могут жить до 100 лет!</li>
+              <li>Киты - самые крупные животные на планете.</li>
+              <li>Медузы не имеют сердца, мозга и костей.</li>
+              <li>Осьминог может менять свою форму и цвет, чтобы скрыться от хищников.</li>
+            </ul>
+            <p>Это всего лишь несколько из множества удивительных фактов о морских обитателях!</p>
+          </div>
+    </div>
+    <div key="3" class="content" id="tab3">
+        <div key="3" class="content" id="tab3">
+            <h2>Рецепты мороженого</h2>
+            <p>Лето - идеальное время для наслаждения вкусным мороженым! Вот несколько простых рецептов, которые вы можете приготовить дома:</p>
+            <h3>1. Ванильное мороженое</h3>
+            <p>Ингредиенты:</p>
+            <ul>
+              <li>2 чашки сливок для взбивания</li>
+              <li>1 чашка цельного молока</li>
+              <li>1 чашка сахара</li>
+              <li>1 столовая ложка экстракта ванили</li>
+            </ul>
+            <p>Инструкции:</p>
+            <ol>
+              <li>Взбейте сливки до образования пиков.</li>
+              <li>Добавьте молоко, сахар и ваниль. Аккуратно перемешайте.</li>
+              <li>Перелейте смесь в мороженицу и заморозьте по инструкции производителя.</li>
+              <li>После заморозки наслаждайтесь свежим ванильным мороженым!</li>
+            </ol>
+            <h3>2. Шоколадное мороженое</h3>
+            <p>Ингредиенты и инструкции аналогичны, за исключением добавления 1/2 чашки какао-порошка к смеси.</p>
+            <p>Попробуйте разные вариации и наслаждайтесь вашим домашним мороженым в жаркий день!</p>
+          </div>
+    </div>
+  </custom-tabs>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const contents = document.querySelectorAll('.content');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const tabId = tab.dataset.tab;
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        contents.forEach(content => {
+          if (content.id === tabId) {
+            content.classList.add('active');
+          } else {
+            content.classList.remove('active');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <limited-textarea maxchars="200"><template id="limited-textarea-template">
+        <style>
+          :host {
+            display: block;
+            font-family: Arial, sans-serif;
+          }
+      
+          textarea {
+            width: 100%;
+            box-sizing: border-box;
+            resize: none;
+            padding: 8px;
+            font-family: inherit;
+            font-size: inherit;
+          }
+      
+          .remaining-chars {
+            margin-top: 5px;
+          }
+      
+          .chars-left {
+            color: black;
+          }
+      
+          .chars-left.orange {
+            color: orange;
+          }
+      
+          .chars-left.red {
+            color: red;
+          }
+    
+          .h1{
+            text-align: center;
+          }  
+        </style>
+        <h1 class="h1">limited-textarea</h1>
+        <h3>Введите текст</h3>
+        <div>
+          <textarea></textarea>
+          <div class="remaining-chars">
+            <span class="chars-left"></span>
+          </div>
+        </div>
+      </template>
+      
+      <script>
+        class LimitedTextarea extends HTMLElement {
+          constructor() {
+            super();
+            const template = document.getElementById('limited-textarea-template').content;
+            this.attachShadow({ mode: 'open' }).appendChild(template.cloneNode(true));
+            this.textarea = this.shadowRoot.querySelector('textarea');
+            this.remainingChars = this.shadowRoot.querySelector('.chars-left');
+      
+            this.maxChars = parseInt(this.getAttribute('maxchars')) || 500;
+            this.updateRemainingChars();
+      
+            this.textarea.addEventListener('input', () => this.updateRemainingChars());
+          }
+      
+          updateRemainingChars() {
+            const remaining = this.maxChars - this.textarea.value.length;
+            const isValid = remaining >= 0;
+      
+            this.remainingChars.textContent = `${remaining} characters left`;
+            this.remainingChars.classList.toggle('orange', remaining <= this.maxChars * 0.1 && remaining > 0);
+            this.remainingChars.classList.toggle('red', remaining <= 0);
+      
+            const event = new CustomEvent('change', {
+              bubbles: true,
+              detail: {
+                value: this.textarea.value.substring(0, this.maxChars),
+                valid: isValid
+              }
+            });
+            this.dispatchEvent(event);
+          }
+        }
+      
+        customElements.define('limited-textarea', LimitedTextarea);
+      </script></limited-textarea>
+    
+    
+
+    <div class="main">
+        <div class="container">
+            <div class="content">
+                <a href="task4.html" class="img">
+                    <div class="img_1">
+                        <div class="text">
+                            Перейти на 4 задание
+                        </div>
+                    </div>
+                </a>
+                <a href="task5.html" class="img">
+                    <div class="img_2">
+                        <div class="text">
+                            Перейти на 5 задание
+                        </div>
+                    </div>
+                </a>
+                <a href="task6.html" class="img">
+                    <div class="img_3">
+                        <div class="text">
+                            Перейти на 6 задание
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<!-- https://st.depositphotos.com/1683796/61480/v/600/depositphotos_614804130-stock-video-vertical-video-asian-software-engineer.jpg -->
+<!-- https://st5.depositphotos.com/1683796/61919/v/600/depositphotos_619195932-stock-video-vertical-video-young-coder-yawning.jpg -->
+<!-- https://st.depositphotos.com/1683796/61481/v/600/depositphotos_614815728-stock-video-vertical-video-diverse-team-data.jpg -->

@@ -1,0 +1,61 @@
+a{
+    text-decoration: none;
+}
+
+.main{
+    width: 100%;
+}
+
+.container{
+    width: 70%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 700px;
+}
+
+.img_1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:330px;
+    height: 500px;
+    background-image: url(https://st.depositphotos.com/1683796/61480/v/600/depositphotos_614804130-stock-video-vertical-video-asian-software-engineer.jpg);
+}
+.img_2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:330px;
+    height: 500px;
+    background-image: url(https://st5.depositphotos.com/1683796/61919/v/600/depositphotos_619195932-stock-video-vertical-video-young-coder-yawning.jpg);
+}
+.img_3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:330px;
+    height: 500px;
+    background-image: url(https://st.depositphotos.com/1683796/61481/v/600/depositphotos_614815728-stock-video-vertical-video-diverse-team-data.jpg);
+}
+
+.img{
+    transition: 0.5s ;
+}
+
+.text{
+    font-weight: 700;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: rgb(255, 255, 255);
+}
+
+.img:hover{
+    transform: translate(0px,-20px);
+    opacity: 0.7;
+}
